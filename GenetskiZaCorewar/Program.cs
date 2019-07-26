@@ -16,6 +16,7 @@ namespace GenetskiZaCorewar
         
         static void Main(string[] args)
         {
+            //dodavanje komentara zbog budjavog gita, spalicu te ako ne budes radio.
             int scoreKita = 0;      //skor iz jedne borbe
             float averageScore = 0; //prosecan skor cele generacije
             float scoreSum = 0;     //suma skorova cele generacije

@@ -16,6 +16,8 @@ namespace GenetskiZaCorewar
         
         static void Main(string[] args)
         {
+            
+
             //dodavanje komentara zbog budjavog gita, spalicu te ako ne budes radio.
             int scoreKita = 0;      //skor iz jedne borbe
             float averageScore = 0; //prosecan skor cele generacije
@@ -33,10 +35,12 @@ namespace GenetskiZaCorewar
                     
             string fullPath3 = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon";  //deo putanje do fajla gde se cuvaju jedinke posebno
             string fullPathPodaci = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Podaci/Podaci.txt";  //cela putanja do txt-a gde se cuva avg i max svake generacije
+            string probaPath = "../../../Podaci.txt";
+            string PopulacijaPath = "../../../Populacija/Pokemon";
 
             geneticAlgorithm = new GeneticAlgorithm<string>(populationSize, 20, random, GetRandomGene, FitnessFunction, elitism, mutationRate); //pravi novu generaciju
             //geneticAlgorithm = new GeneticAlgorithm<string>(20, random, LoadGene, FitnessFunction, elitism, mutationRate);
-            geneticAlgorithm.SaveGenerationToTxt(fullPath3);
+            geneticAlgorithm.SaveGenerationToTxt(PopulacijaPath);
 
 
             float maxBestFitness = 0;   //najbolji skor ikada
@@ -48,8 +52,8 @@ namespace GenetskiZaCorewar
                 averageScore = 0;   //prosecan skor na 0
                 geneticAlgorithm.NewGeneration(maxBestFitness); //pravi novu generaciju
                 averageScore = scoreSum / geneticAlgorithm.Population.Count;    //racuna prosecan skor
-                geneticAlgorithm.SaveGenerationToTxt(fullPath3);                //cuva jedinke u fajlove posebno
-                FileReadWrite.WritePodaci(fullPathPodaci, geneticAlgorithm.BestFitness, averageScore, geneticAlgorithm.Generation); //cuva podatke u fajl
+                geneticAlgorithm.SaveGenerationToTxt(PopulacijaPath);                //cuva jedinke u fajlove posebno
+                FileReadWrite.WritePodaci(probaPath, geneticAlgorithm.BestFitness, averageScore, geneticAlgorithm.Generation); //cuva podatke u fajl
                 Console.WriteLine("Average score: " + averageScore);
                 Console.WriteLine("Najjaci pokemon u ovoj generaciji: " + geneticAlgorithm.BestFitness);
                 if(geneticAlgorithm.BestFitness > maxBestFitness)
@@ -97,7 +101,6 @@ namespace GenetskiZaCorewar
             {
                 float scoreJedinke = 0;
 
-                const string ex1 = "C:/Users/Skabo/source/repos/GenetskiZaCorewar";
                 string line = "";
 
                 // Odabrani ratnici za benchmark
@@ -118,7 +121,7 @@ namespace GenetskiZaCorewar
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.CreateNoWindow = false;
                 startInfo.UseShellExecute = false;
-                startInfo.FileName = "C:/Users/Skabo/Source/repos/GenetskiZaCorewar/pmars-server/pmars-server.exe";
+                startInfo.FileName = "../../../pmars-server/pmars-server.exe";
                 startInfo.WindowStyle = ProcessWindowStyle.Normal;
                 startInfo.RedirectStandardOutput = true;
                 startInfo.RedirectStandardError = true;
@@ -126,7 +129,7 @@ namespace GenetskiZaCorewar
                 //svaka while petlja je borba sa jednim gladijatorom, svaka borba ima broj rundi kao sto pise u startInfo.Arguments
                 try
                 {
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator1 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator1 + " -r 50";
                     Process exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -140,8 +143,8 @@ namespace GenetskiZaCorewar
                     }
                     exeProcess.WaitForExit();       //saceka da se proces zavrsi
                     scoreJedinke += scoreKita;      //sracunava skor jedinke
-                    //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator2 + " -r 50";
+                                                    //--------------------------------------------------------------
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator2 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -156,7 +159,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator3 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator3 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -171,7 +174,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator4 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator4 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -186,7 +189,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator5 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator5 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -201,7 +204,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator6 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator6 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -216,7 +219,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator7 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator7 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -231,7 +234,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator8 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator8 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -246,7 +249,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator9 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator9 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -261,7 +264,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator10 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator10 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -276,7 +279,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator11 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator11 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -291,7 +294,7 @@ namespace GenetskiZaCorewar
                     exeProcess.WaitForExit();
                     scoreJedinke += scoreKita;
                     //--------------------------------------------------------------
-                    startInfo.Arguments = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red  C:/Users/Skabo/source/repos/GenetskiZaCorewar/pmars-server/Basic_Warriors/" + gladijator12 + " -r 50";
+                    startInfo.Arguments = "../../../Populacija/Pokemon" + i + ".red  ../../../pmars-server/Basic_Warriors/" + gladijator12 + " -r 50";
                     exeProcess = Process.Start(startInfo);
                     while (exeProcess.StandardOutput.EndOfStream == false)
                     {
@@ -319,11 +322,6 @@ namespace GenetskiZaCorewar
                     Console.WriteLine(e.Message);
                     return 0;
                 }
-            }
-
-            float VrsnjackoNasilje()
-            {
-                return 0;
             }
 
         }

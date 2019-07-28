@@ -16,7 +16,7 @@ namespace GenetskiZaCorewar
         
         static void Main(string[] args)
         {
-            
+            Directory.CreateDirectory("../../../Populacija");   //Pravi folder gde ce se cuvati jedinke posebno
 
             //dodavanje komentara zbog budjavog gita, spalicu te ako ne budes radio.
             int scoreKita = 0;      //skor iz jedne borbe
@@ -33,10 +33,8 @@ namespace GenetskiZaCorewar
             char[] DozvoljeniAdrModovi = { '#', '$', '*', '@', '<', '>', '{', '}' };                                                    //jasno
 
                     
-            string fullPath3 = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon";  //deo putanje do fajla gde se cuvaju jedinke posebno
-            string fullPathPodaci = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Podaci/Podaci.txt";  //cela putanja do txt-a gde se cuva avg i max svake generacije
-            string probaPath = "../../../Podaci.txt";
-            string PopulacijaPath = "../../../Populacija/Pokemon";
+            string podaciPath = "../../../Podaci.txt";   //putanja do txt-a gde se cuvaju avg i max generacije
+            string PopulacijaPath = "../../../Populacija/Pokemon";  //dep putanje do fajla gde se cuvaju jedinke
 
             geneticAlgorithm = new GeneticAlgorithm<string>(populationSize, 20, random, GetRandomGene, FitnessFunction, elitism, mutationRate); //pravi novu generaciju
             //geneticAlgorithm = new GeneticAlgorithm<string>(20, random, LoadGene, FitnessFunction, elitism, mutationRate);
@@ -53,7 +51,7 @@ namespace GenetskiZaCorewar
                 geneticAlgorithm.NewGeneration(maxBestFitness); //pravi novu generaciju
                 averageScore = scoreSum / geneticAlgorithm.Population.Count;    //racuna prosecan skor
                 geneticAlgorithm.SaveGenerationToTxt(PopulacijaPath);                //cuva jedinke u fajlove posebno
-                FileReadWrite.WritePodaci(probaPath, geneticAlgorithm.BestFitness, averageScore, geneticAlgorithm.Generation); //cuva podatke u fajl
+                FileReadWrite.WritePodaci(podaciPath, geneticAlgorithm.BestFitness, averageScore, geneticAlgorithm.Generation); //cuva podatke u fajl
                 Console.WriteLine("Average score: " + averageScore);
                 Console.WriteLine("Najjaci pokemon u ovoj generaciji: " + geneticAlgorithm.BestFitness);
                 if(geneticAlgorithm.BestFitness > maxBestFitness)

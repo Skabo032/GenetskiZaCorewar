@@ -67,7 +67,7 @@ namespace GenetskiZaCorewar
             {
                 child.Genes[i] = random.NextDouble() < 0.5 ? Genes[i] : otherParent.Genes[i];
             }
-            Console.WriteLine("Krosover: " + Genes + " " + otherParent.Genes);
+            Console.WriteLine("Krosover je izvrsen");
             return child;
         }
 

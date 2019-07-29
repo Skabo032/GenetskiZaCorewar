@@ -154,7 +154,7 @@ namespace GenetskiZaCorewar
                 {
                     if (randomNumber < Population[i].Fitness)
                     {
-                        Console.WriteLine("parent1 je choosovan");
+                        Console.WriteLine("parent je choosovan: Pokemon" + i);
                         return Population[i];
                     }
                     randomNumber -= Population[i].Fitness;

@@ -81,12 +81,7 @@ namespace GenetskiZaCorewar
              
                 return linija;               
             }
-            string LoadGene(int i) //neuspesan pokusaj da se ucita generacija iz fajla
-            {
-                string path = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon" + i + ".red";
-                return FileReadWrite.ReadFromTxtFile<string>(path);
-            }
-           
+
             float FitnessFunction(int i)    //izracunava fitness/skor jedne jedinke, msm
             {
                 float score = 0;

@@ -49,7 +49,6 @@
     <Compile Include="DNA.cs" />
     <Compile Include="FileReadWrite.cs" />
     <Compile Include="GeneticAlgorithm.cs" />
-    <Compile Include="GeneticSaveData.cs" />
     <Compile Include="NormalDistributionRandom.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -102,7 +102,7 @@ namespace GenetskiZaCorewar
         public bool LoadGeneration(string filePath)
         {
             
-            string savedData = "C:/Users/Skabo/source/repos/GenetskiZaCorewar/Populacija/Pokemon";
+            string savedData = "../../../Populacija/Pokemon";
             if (System.IO.File.Exists(filePath))
                 return false;
 
@@ -138,7 +138,7 @@ namespace GenetskiZaCorewar
                 }
                 if(Population[i].Fitness > max)
                 {
-                    FileReadWrite.WriteNajbolji("C:/Users/Skabo/source/repos/GenetskiZaCorewar/Podaci/Najbolji.red", best, Generation, Population[i].Fitness);
+                    FileReadWrite.WriteNajbolji("../../../Podaci/Najbolji.red", best, Generation, Population[i].Fitness);
                 }
             }
             BestFitness = best.Fitness;

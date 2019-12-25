@@ -17,6 +17,7 @@ namespace GenetskiZaCorewar
         static void Main(string[] args)
         {
             Directory.CreateDirectory("../../../Populacija");   //Pravi folder gde ce se cuvati jedinke posebno
+            Directory.CreateDirectory("../../../Podaci");       //Pravi folder za cuvanje podataka
 
             //dodavanje komentara zbog budjavog gita, spalicu te ako ne budes radio.
             int scoreKita = 0;      //skor iz jedne borbe
@@ -33,7 +34,7 @@ namespace GenetskiZaCorewar
             char[] DozvoljeniAdrModovi = { '#', '$', '*', '@', '<', '>', '{', '}' };                                                    //jasno
 
                     
-            string podaciPath = "../../../Podaci.txt";   //putanja do txt-a gde se cuvaju avg i max generacije
+            string podaciPath = "../../../Podaci/Podaci.txt";   //putanja do txt-a gde se cuvaju avg i max generacije
             string PopulacijaPath = "../../../Populacija/Pokemon";  //dep putanje do fajla gde se cuvaju jedinke
 
             geneticAlgorithm = new GeneticAlgorithm<string>(populationSize, 20, random, GetRandomGene, FitnessFunction, elitism, mutationRate); //pravi novu generaciju
@@ -74,8 +75,8 @@ namespace GenetskiZaCorewar
                    //OperandA = random.Next(-4000, 4000);
                    //OperandB = random.Next(-4000, 4000);
 
-                OperandA = NormalDistributionRandom.NextGaussian(random, 0, 100);   //Operandi sa normalnom distribucijom
-                OperandB = NormalDistributionRandom.NextGaussian(random, 0, 100);   //           -||-
+                OperandA = NormalDistributionRandom.NextGaussian(random, 0, 50);   //Operandi sa normalnom distribucijom
+                OperandB = NormalDistributionRandom.NextGaussian(random, 0, 50);   //           -||-
 
                 linija = DozvoljeniOpCode[OpCodeIndex] + " " + DozvoljeniAdrModovi[AdrModeAIndex] + OperandA + ", " + DozvoljeniAdrModovi[AdrModeBIndex] + OperandB + " ";
              
